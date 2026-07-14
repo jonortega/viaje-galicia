@@ -1,0 +1,168 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import { CategoryIcon, Icon } from "@/components/Icon";
+import { placeCategoryMeta, trip } from "@/data/trip";
+import { cn } from "@/lib/cn";
+import { formatLongDate, getTripStatus } from "@/lib/trip-date";
+
+export function ItineraryList() {
+  const status = getTripStatus(trip);
+  const currentDayId =
+    status.phase === "during" ? status.currentDay?.id : undefined;
+  const [openDays, setOpenDays] = useState<Set<string>>(
+    () => new Set([currentDayId ?? trip.days[0].id]),
+  );
+
+  function toggleDay(dayId: string) {
+    setOpenDays((current) => {
+      const next = new Set(current);
+      if (next.has(dayId)) next.delete(dayId);
+      else next.add(dayId);
+      return next;
+    });
+  }
+
+  return (
+    <section className="relative px-5 pb-32 sm:px-8">
+      <div className="absolute bottom-36 left-[2.34rem] top-7 w-px bg-gradient-to-b from-[#147d76] via-[#bed8d0] to-transparent sm:left-[3.34rem]" />
+
+      <div className="space-y-4">
+        {trip.days.map((day) => {
+          const isOpen = openDays.has(day.id);
+          const isCurrent = day.id === currentDayId;
+          const base = trip.bases.find((item) => item.id === day.baseId);
+          const stops = day.stopIds
+            .map((stopId) => trip.places.find((place) => place.id === stopId))
+            .filter(Boolean);
+
+          return (
+            <article
+              key={day.id}
+              id={day.id}
+              className="relative scroll-mt-6 pl-11 sm:pl-14"
+            >
+              <div
+                className={cn(
+                  "absolute left-0 top-5 z-10 grid size-9 place-items-center rounded-full border-[3px] text-xs font-black shadow-sm sm:size-10",
+                  isCurrent
+                    ? "border-[#f6c94c] bg-[#0b3157] text-[#f6c94c]"
+                    : "border-white bg-[#e4f1ec] text-[#147d76]",
+                )}
+              >
+                {day.number}
+              </div>
+
+              <div
+                className={cn(
+                  "overflow-hidden rounded-[1.55rem] border bg-white shadow-[0_12px_30px_rgba(26,54,75,.06)] transition-colors",
+                  isCurrent
+                    ? "border-[#f6c94c] ring-2 ring-[#f6c94c]/20"
+                    : "border-[#e5ddcf]",
+                )}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleDay(day.id)}
+                  aria-expanded={isOpen}
+                  aria-controls={`${day.id}-content`}
+                  className="flex min-h-24 w-full items-center gap-3 p-4 text-left focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[#147d76] sm:p-5"
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <p className="text-[.68rem] font-extrabold uppercase tracking-[.14em] text-[#147d76]">
+                        <span className="capitalize">{formatLongDate(day.date)}</span>
+                      </p>
+                      {isCurrent ? (
+                        <span className="rounded-full bg-[#fff1bd] px-2 py-0.5 text-[.6rem] font-black uppercase tracking-[.12em] text-[#8a6200]">
+                          Hoy
+                        </span>
+                      ) : null}
+                    </div>
+                    <h2 className="mt-1 truncate text-lg font-black text-[#0b3157] sm:text-xl">
+                      {day.title}
+                    </h2>
+                    <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold text-[#778690]">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Icon name="bed" className="size-3.5 text-[#c08a10]" />
+                        {base?.town}
+                      </span>
+                      {day.driving ? (
+                        <span className="inline-flex items-center gap-1.5">
+                          <Icon name="car" className="size-3.5 text-[#147d76]" />
+                          {day.driving}
+                        </span>
+                      ) : null}
+                    </div>
+                  </div>
+                  <span
+                    className={cn(
+                      "grid size-9 shrink-0 place-items-center rounded-full bg-[#f4efe4] text-[#526773] transition-transform",
+                      isOpen && "rotate-180",
+                    )}
+                  >
+                    <Icon name="chevron" className="size-4" />
+                  </span>
+                </button>
+
+                {isOpen ? (
+                  <div
+                    id={`${day.id}-content`}
+                    className="animate-rise border-t border-[#eee7db] px-4 pb-5 pt-4 sm:px-5"
+                  >
+                    <p className="text-sm leading-6 text-[#60717c]">{day.summary}</p>
+
+                    <ol className="mt-4 space-y-2.5">
+                      {stops.map((place, index) =>
+                        place ? (
+                          <li
+                            key={place.id}
+                            className="group flex items-center gap-3 rounded-2xl bg-[#f8f5ee] p-3 transition-colors hover:bg-[#f1eee5]"
+                          >
+                            <span
+                              className="grid size-9 shrink-0 place-items-center rounded-xl"
+                              style={{
+                                color: placeCategoryMeta[place.category].color,
+                                backgroundColor:
+                                  placeCategoryMeta[place.category].accent,
+                              }}
+                            >
+                              <CategoryIcon category={place.category} className="size-4" />
+                            </span>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[.62rem] font-extrabold uppercase tracking-[.12em] text-[#8a969e]">
+                                Parada {index + 1}
+                              </p>
+                              <h3 className="truncate text-sm font-extrabold text-[#173342]">
+                                {place.name}
+                              </h3>
+                            </div>
+                            <Link
+                              href={`/mapa?lugar=${place.id}`}
+                              aria-label={`Ver ${place.name} en el mapa`}
+                              className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-[#147d76] shadow-sm transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]"
+                            >
+                              <Icon name="map" className="size-4" />
+                            </Link>
+                          </li>
+                        ) : null,
+                      )}
+                    </ol>
+
+                    {day.notes ? (
+                      <div className="mt-4 flex gap-2.5 rounded-2xl border border-[#f0df9a] bg-[#fff8db] p-3 text-xs leading-5 text-[#765e23]">
+                        <Icon name="sparkles" className="mt-0.5 size-4 shrink-0 text-[#c08a10]" />
+                        <p>{day.notes}</p>
+                      </div>
+                    ) : null}
+                  </div>
+                ) : null}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}

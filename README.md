@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Galicia 2026
 
-## Getting Started
+Aplicación móvil para consultar el estado, el mapa y el itinerario de un viaje de siete noches por Galicia.
 
-First, run the development server:
+## Requisitos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
+- Node.js 20.9 o superior.
+- pnpm 10 (el proyecto fija la versión recomendada en **package.json**).
+
+## Desarrollo
+
+~~~bash
+pnpm install
 pnpm dev
-# or
-bun dev
-```
+~~~
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Comprobaciones
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+~~~bash
+pnpm lint
+pnpm typecheck
+pnpm build
+~~~
 
-## Learn More
+Para probar el resultado de producción:
 
-To learn more about Next.js, take a look at the following resources:
+~~~bash
+pnpm start
+~~~
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Personalizar el viaje
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Todo el contenido está en [src/data/trip.ts](src/data/trip.ts):
 
-## Deploy on Vercel
+- **startDate** y **endDate**: fechas del viaje.
+- **bases**: alojamientos, noches y coordenadas.
+- **days**: títulos, paradas, notas y conducción de cada día.
+- **places**: lugares, categorías, coordenadas y enlaces a Google Maps.
+- **playlist.url**: enlace de Spotify.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Los valores actuales son datos de muestra señalados con un TODO. Las fechas usan el formato AAAA-MM-DD y el estado del viaje se calcula en Europe/Madrid.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Una imagen opcional puede ser una ruta dentro de **public** (por ejemplo, **/lugares/fisterra.jpg**) o una URL. Si no carga, la interfaz muestra automáticamente el fallback visual de su categoría.
+
+## Desplegar en Vercel
+
+1. Sube el proyecto a un repositorio Git.
+2. Impórtalo desde [Vercel](https://vercel.com/new).
+3. Vercel detectará Next.js y **pnpm-lock.yaml**; no hacen falta variables de entorno.
+4. Pulsa **Deploy**.
+
+La aplicación es frontend-only y no necesita base de datos, autenticación ni servicios externos aparte de las teselas de OpenStreetMap.
