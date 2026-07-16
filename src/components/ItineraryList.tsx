@@ -6,11 +6,30 @@ import { CategoryIcon, Icon } from "@/components/Icon";
 import { placeCategoryMeta, trip } from "@/data/trip";
 import { cn } from "@/lib/cn";
 import { formatLongDate, getTripStatus } from "@/lib/trip-date";
+import type { TripDayStatus } from "@/types/trip";
+
+const dayStatusMeta: Record<
+  TripDayStatus,
+  { label: string; className: string }
+> = {
+  confirmado: {
+    label: "Confirmado",
+    className: "bg-[#e4f1ec] text-[#147d76]",
+  },
+  provisional: {
+    label: "Plan flexible",
+    className: "bg-[#fff1bd] text-[#8a6200]",
+  },
+  "por-decidir": {
+    label: "Por decidir",
+    className: "bg-[#edf0f1] text-[#60717c]",
+  },
+};
 
 export function ItineraryList() {
-  const status = getTripStatus(trip);
+  const tripStatus = getTripStatus(trip);
   const currentDayId =
-    status.phase === "during" ? status.currentDay?.id : undefined;
+    tripStatus.phase === "during" ? tripStatus.currentDay?.id : undefined;
   const [openDays, setOpenDays] = useState<Set<string>>(
     () => new Set([currentDayId ?? trip.days[0].id]),
   );
@@ -36,6 +55,7 @@ export function ItineraryList() {
           const stops = day.stopIds
             .map((stopId) => trip.places.find((place) => place.id === stopId))
             .filter(Boolean);
+          const statusMeta = day.status ? dayStatusMeta[day.status] : undefined;
 
           return (
             <article
@@ -79,8 +99,18 @@ export function ItineraryList() {
                           Hoy
                         </span>
                       ) : null}
+                      {statusMeta ? (
+                        <span
+                          className={cn(
+                            "rounded-full px-2 py-0.5 text-[.6rem] font-black uppercase tracking-[.1em]",
+                            statusMeta.className,
+                          )}
+                        >
+                          {statusMeta.label}
+                        </span>
+                      ) : null}
                     </div>
-                    <h2 className="mt-1 truncate text-lg font-black text-[#0b3157] sm:text-xl">
+                    <h2 className="mt-1 text-lg font-black leading-tight text-[#0b3157] sm:text-xl">
                       {day.title}
                     </h2>
                     <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold text-[#778690]">
@@ -113,42 +143,121 @@ export function ItineraryList() {
                   >
                     <p className="text-sm leading-6 text-[#60717c]">{day.summary}</p>
 
-                    <ol className="mt-4 space-y-2.5">
-                      {stops.map((place, index) =>
-                        place ? (
-                          <li
-                            key={place.id}
-                            className="group flex items-center gap-3 rounded-2xl bg-[#f8f5ee] p-3 transition-colors hover:bg-[#f1eee5]"
-                          >
-                            <span
-                              className="grid size-9 shrink-0 place-items-center rounded-xl"
-                              style={{
-                                color: placeCategoryMeta[place.category].color,
-                                backgroundColor:
-                                  placeCategoryMeta[place.category].accent,
-                              }}
+                    {day.activities?.length ? (
+                      <section className="mt-4">
+                        <h3 className="mb-2 flex items-center gap-2 text-[.68rem] font-extrabold uppercase tracking-[.13em] text-[#0b3157]">
+                          <Icon name="clock" className="size-4 text-[#147d76]" />
+                          Plan del día
+                        </h3>
+                        <ol className="divide-y divide-[#e9e3d8] overflow-hidden rounded-2xl bg-[#f8f5ee] px-3">
+                          {day.activities.map((activity, index) => (
+                            <li
+                              key={`${activity.time ?? "plan"}-${index}`}
+                              className="flex gap-3 py-3 text-xs leading-5 text-[#526773]"
                             >
-                              <CategoryIcon category={place.category} className="size-4" />
-                            </span>
-                            <div className="min-w-0 flex-1">
-                              <p className="text-[.62rem] font-extrabold uppercase tracking-[.12em] text-[#8a969e]">
-                                Parada {index + 1}
-                              </p>
-                              <h3 className="truncate text-sm font-extrabold text-[#173342]">
-                                {place.name}
-                              </h3>
-                            </div>
-                            <Link
-                              href={`/mapa?lugar=${place.id}`}
-                              aria-label={`Ver ${place.name} en el mapa`}
-                              className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-[#147d76] shadow-sm transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]"
-                            >
-                              <Icon name="map" className="size-4" />
-                            </Link>
-                          </li>
-                        ) : null,
-                      )}
-                    </ol>
+                              {activity.time ? (
+                                <span className="w-[4.3rem] shrink-0 font-extrabold text-[#147d76]">
+                                  {activity.time}
+                                </span>
+                              ) : (
+                                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#147d76]" />
+                              )}
+                              <span>{activity.text}</span>
+                            </li>
+                          ))}
+                        </ol>
+                      </section>
+                    ) : null}
+
+                    {stops.length ? (
+                      <section className="mt-4">
+                        <h3 className="mb-2 flex items-center gap-2 text-[.68rem] font-extrabold uppercase tracking-[.13em] text-[#0b3157]">
+                          <Icon name="map" className="size-4 text-[#147d76]" />
+                          En el mapa
+                        </h3>
+                        <ol className="space-y-2.5">
+                          {stops.map((place, index) =>
+                            place ? (
+                              <li
+                                key={place.id}
+                                className="group flex items-center gap-3 rounded-2xl bg-[#f8f5ee] p-3 transition-colors hover:bg-[#f1eee5]"
+                              >
+                                <span
+                                  className="grid size-9 shrink-0 place-items-center rounded-xl"
+                                  style={{
+                                    color: placeCategoryMeta[place.category].color,
+                                    backgroundColor:
+                                      placeCategoryMeta[place.category].accent,
+                                  }}
+                                >
+                                  <CategoryIcon category={place.category} className="size-4" />
+                                </span>
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-[.62rem] font-extrabold uppercase tracking-[.12em] text-[#8a969e]">
+                                    Parada {index + 1}
+                                  </p>
+                                  <h4 className="truncate text-sm font-extrabold text-[#173342]">
+                                    {place.name}
+                                  </h4>
+                                </div>
+                                <Link
+                                  href={`/mapa?lugar=${place.id}`}
+                                  aria-label={`Ver ${place.name} en el mapa`}
+                                  className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-[#147d76] shadow-sm transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]"
+                                >
+                                  <Icon name="map" className="size-4" />
+                                </Link>
+                              </li>
+                            ) : null,
+                          )}
+                        </ol>
+                      </section>
+                    ) : null}
+
+                    {day.meals?.length ? (
+                      <section className="mt-4 rounded-2xl border border-[#f0d2bd] bg-[#fff4ec] p-3">
+                        <h3 className="flex items-center gap-2 text-[.68rem] font-extrabold uppercase tracking-[.13em] text-[#a8542d]">
+                          <Icon name="utensils" className="size-4" />
+                          Comida
+                        </h3>
+                        <ul className="mt-2 space-y-1.5 text-xs leading-5 text-[#765442]">
+                          {day.meals.map((meal) => (
+                            <li key={meal}>{meal}</li>
+                          ))}
+                        </ul>
+                      </section>
+                    ) : null}
+
+                    {day.alternatives?.length ? (
+                      <section className="mt-4 rounded-2xl border border-[#ded2e2] bg-[#f7f1f8] p-3">
+                        <h3 className="flex items-center gap-2 text-[.68rem] font-extrabold uppercase tracking-[.13em] text-[#73577c]">
+                          <Icon name="sparkles" className="size-4" />
+                          Si apetece
+                        </h3>
+                        <ul className="mt-2 space-y-1.5 text-xs leading-5 text-[#66536b]">
+                          {day.alternatives.map((alternative) => (
+                            <li key={alternative} className="flex gap-2">
+                              <span aria-hidden="true">·</span>
+                              <span>{alternative}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </section>
+                    ) : null}
+
+                    {day.logistics?.length ? (
+                      <section className="mt-4 rounded-2xl border border-[#cddde7] bg-[#f0f6f8] p-3">
+                        <h3 className="flex items-center gap-2 text-[.68rem] font-extrabold uppercase tracking-[.13em] text-[#315d88]">
+                          <Icon name="car" className="size-4" />
+                          Logística
+                        </h3>
+                        <ul className="mt-2 space-y-1.5 text-xs leading-5 text-[#496875]">
+                          {day.logistics.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </section>
+                    ) : null}
 
                     {day.notes ? (
                       <div className="mt-4 flex gap-2.5 rounded-2xl border border-[#f0df9a] bg-[#fff8db] p-3 text-xs leading-5 text-[#765e23]">

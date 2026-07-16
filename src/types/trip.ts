@@ -40,6 +40,13 @@ export interface Place {
   mapsUrl: string;
 }
 
+export type TripDayStatus = "confirmado" | "provisional" | "por-decidir";
+
+export interface TripActivity {
+  text: string;
+  time?: string;
+}
+
 export interface TripDay {
   id: string;
   number: number;
@@ -48,6 +55,11 @@ export interface TripDay {
   title: string;
   summary: string;
   stopIds: string[];
+  activities?: TripActivity[];
+  meals?: string[];
+  alternatives?: string[];
+  logistics?: string[];
+  status?: TripDayStatus;
   notes?: string;
   driving?: string;
 }
