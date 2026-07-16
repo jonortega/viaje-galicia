@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title description">
+  <title id="title">Portada provisional de la playlist Galicia 2026</title>
+  <desc id="description">Marcador local para sustituir por la portada definitiva de la playlist.</desc>
+  <rect width="800" height="800" fill="#dce7df"/>
+  <rect x="76" y="76" width="648" height="648" rx="56" fill="#183c34"/>
+  <circle cx="400" cy="334" r="146" fill="#1ed760"/>
+  <path d="M372 264v166m0-134 104-22v129" fill="none" stroke="#183c34" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="337" cy="430" r="39" fill="#183c34"/>
+  <circle cx="441" cy="403" r="39" fill="#183c34"/>
+  <text x="400" y="564" fill="#fffdf7" font-family="Arial, sans-serif" font-size="48" font-weight="700" text-anchor="middle">GALICIA 2026</text>
+  <text x="400" y="619" fill="#a9c7b8" font-family="Arial, sans-serif" font-size="25" font-weight="600" letter-spacing="5" text-anchor="middle">PLAYLIST</text>
+</svg>

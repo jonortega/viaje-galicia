@@ -16,9 +16,9 @@ export default async function MapPage({
   return (
     <main className="mx-auto w-full max-w-6xl">
       <PageHeader
-        eyebrow="Todo a mano"
+        eyebrow="Lugares del viaje"
         title="Mapa del viaje"
-        description="Bases, playas, pueblos y lugares que merecen un pequeño desvío."
+        description="Alojamientos, playas, pueblos y paradas incluidas en el itinerario."
         icon="map"
         action={{ href: "/itinerario", label: "Ver itinerario" }}
       />

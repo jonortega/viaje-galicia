@@ -111,9 +111,9 @@ export function HomePulse() {
       <span className='grid size-11 place-items-center rounded-full bg-white text-[#147d76] shadow-sm'>
         <Icon name='sparkles' className='size-6' />
       </span>
-      <h2 className='mt-4 text-2xl font-black'>Viaje completado. Leyenda desbloqueada.</h2>
+      <h2 className='mt-4 text-2xl font-black'>Viaje finalizado</h2>
       <p className='mt-2 max-w-xl text-sm leading-6 text-[#496875]'>
-        Quedan las fotos, las historias exageradas y la duda de cuándo volvemos.
+        El itinerario y los lugares guardados siguen disponibles para consultarlos.
       </p>
     </section>
   );

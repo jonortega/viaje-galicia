@@ -12,7 +12,7 @@ export default function ItineraryPage() {
       <PageHeader
         eyebrow="Ocho días"
         title="La ruta, día a día"
-        description="Lo bastante planeado para no discutir. Lo bastante abierto para improvisar."
+        description="Planes confirmados, opciones flexibles y detalles prácticos de cada jornada."
         icon="calendar"
         action={{ href: "/mapa", label: "Abrir mapa" }}
       />

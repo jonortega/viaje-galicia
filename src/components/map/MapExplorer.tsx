@@ -17,7 +17,7 @@ const TripMap = dynamic(() => import("@/components/map/TripMap"), {
         <span className="mx-auto grid size-12 place-items-center rounded-full bg-white text-[#147d76] shadow-sm">
           <Icon name="map" className="size-6" />
         </span>
-        <p className="mt-3 text-sm font-bold text-[#496875]">Desplegando el mapa…</p>
+        <p className="mt-3 text-sm font-bold text-[#496875]">Cargando el mapa…</p>
       </div>
     </div>
   ),
@@ -115,8 +115,13 @@ export function MapExplorer({ initialPlaceId }: { initialPlaceId?: string }) {
             aria-label={`Información de ${selected.name}`}
             className="animate-rise absolute inset-x-2 bottom-2 z-[800] overflow-hidden rounded-[1.45rem] border border-white/80 bg-[#fffdf7] shadow-[0_18px_50px_rgba(11,49,87,.26)] sm:left-auto sm:right-3 sm:w-[23rem]"
           >
-            <div className="grid grid-cols-[6.3rem_1fr]">
-              <PlaceVisual place={selected} compact className="h-full min-h-28 rounded-none" />
+            <div className="grid grid-cols-[7.25rem_1fr]">
+              <PlaceVisual
+                key={selected.id}
+                place={selected}
+                compact
+                className="h-full min-h-32 rounded-none"
+              />
               <div className="min-w-0 p-4">
                 <button
                   type="button"

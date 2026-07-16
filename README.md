@@ -39,10 +39,29 @@ Todo el contenido está en [src/data/trip.ts](src/data/trip.ts):
 - **days**: títulos, paradas, notas y conducción de cada día.
 - **places**: lugares, categorías, coordenadas y enlaces a Google Maps.
 - **playlist.url**: enlace de Spotify.
+- **playlist.image**: portada local de la playlist.
 
-Los valores actuales son datos de muestra señalados con un TODO. Las fechas usan el formato AAAA-MM-DD y el estado del viaje se calcula en Europe/Madrid.
+Las fechas usan el formato AAAA-MM-DD y el estado del viaje se calcula en Europe/Madrid.
 
-Una imagen opcional puede ser una ruta dentro de **public** (por ejemplo, **/lugares/fisterra.jpg**) o una URL. Si no carga, la interfaz muestra automáticamente el fallback visual de su categoría.
+## Fotografías locales
+
+La portada provisional de Spotify está en:
+
+**public/images/spotify/playlist-cover.svg**
+
+Puedes sustituir ese archivo manteniendo el nombre. Si prefieres otro formato, guarda el nuevo archivo en la misma carpeta y cambia únicamente **playlist.image** en **src/data/trip.ts**.
+
+Las fotografías de los lugares se guardan en:
+
+**public/images/places/**
+
+Cada lugar ya tiene su ruta esperada en el campo **image** de **src/data/trip.ts**. Para añadir o reemplazar una fotografía:
+
+1. Guarda la imagen con el nombre indicado, por ejemplo **public/images/places/faro-cabo-vilan.webp**.
+2. Mantén el mismo encuadre en formato horizontal o cuadrado; la aplicación usa recorte con **object-fit: cover**.
+3. Si cambias el nombre o formato, actualiza solo el campo **image** del lugar.
+
+Mientras un archivo no exista o no pueda cargarse, el panel muestra un fondo neutro con el texto “Foto pendiente”.
 
 ## Desplegar en Vercel
 
