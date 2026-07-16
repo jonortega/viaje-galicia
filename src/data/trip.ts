@@ -1,8 +1,4 @@
-import type {
-  PlaceCategory,
-  PlaceCategoryMeta,
-  Trip,
-} from "@/types/trip";
+import type { PlaceCategory, PlaceCategoryMeta, Trip } from "@/types/trip";
 
 export const placeCategoryMeta: Record<PlaceCategory, PlaceCategoryMeta> = {
   alojamiento: { label: "Alojamiento", color: "#0b3157", accent: "#d9a928" },
@@ -18,14 +14,14 @@ export const placeCategoryMeta: Record<PlaceCategory, PlaceCategoryMeta> = {
 // Siete noches implican ocho días contando el regreso a Santiago.
 export const trip: Trip = {
   title: "Galicia 2026",
-  subtitle: "Cuatro amigos, un coche y ninguna prisa.",
-  startDate: "2026-08-01",
-  endDate: "2026-08-08",
+  subtitle: "",
+  startDate: "2026-07-25",
+  endDate: "2026-08-01",
   timeZone: "Europe/Madrid",
   travelers: 4,
   playlist: {
-    title: "Banda sonora atlántica",
-    subtitle: "Para cantar mal entre curva y curva",
+    title: "Muñeiras y otros éxitos",
+    subtitle: "Pulsa para abrir Spotify",
     url: "https://open.spotify.com/",
   },
   bases: [
@@ -35,23 +31,23 @@ export const trip: Trip = {
       town: "Cambados",
       nights: 4,
       coordinates: { lat: 42.5148, lng: -8.8137 },
-      note: "Alojamiento por confirmar",
+      note: "Alojamiento confirmado",
     },
     {
       id: "finisterre",
-      name: "Refugio de Finisterre",
+      name: "Casa de Finisterre",
       town: "Finisterre",
       nights: 2,
       coordinates: { lat: 42.9078, lng: -9.2644 },
-      note: "Alojamiento por confirmar",
+      note: "Alojamiento confirmado",
     },
     {
       id: "sigueiro",
-      name: "Última parada",
+      name: "Casa de Sigüeiro",
       town: "Sigüeiro",
       nights: 1,
       coordinates: { lat: 42.9682, lng: -8.4438 },
-      note: "Alojamiento por confirmar",
+      note: "Alojamiento confirmado",
     },
   ],
   days: [
