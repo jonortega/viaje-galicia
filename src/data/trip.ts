@@ -23,7 +23,7 @@ export const trip: Trip = {
     title: "Muñeiras y otros éxitos",
     subtitle: "Pulsa para abrir Spotify",
     url: "https://open.spotify.com/",
-    image: "/images/spotify/playlist-cover.svg",
+    image: "/images/spotify/playlist-cover-placeholder.webp",
   },
   bases: [
     {
@@ -58,8 +58,7 @@ export const trip: Trip = {
       date: "2026-07-25",
       baseId: "cambados",
       title: "Santiago en fiestas y Cambados",
-      summary:
-        "Llegada temprana, Santiago en fiestas y primera tarde en Cambados antes de recoger a Ibón.",
+      summary: "Llegada temprana, Santiago en fiestas y primera tarde en Cambados antes de recoger a Ibón.",
       stopIds: ["santiago", "cambados", "base-cambados"],
       status: "confirmado",
       activities: [
@@ -127,19 +126,12 @@ export const trip: Trip = {
       date: "2026-07-28",
       baseId: "cambados",
       title: "Combarro y plan abierto",
-      summary:
-        "Combarro como plan principal y varias ideas para completar el día según apetezca.",
+      summary: "Combarro como plan principal y varias ideas para completar el día según apetezca.",
       stopIds: ["combarro"],
       status: "provisional",
       activities: [{ text: "Visitar Combarro." }],
-      meals: [
-        "Posible comida de mejillones en barco por unos 20 €; propuesta pendiente de decidir.",
-      ],
-      alternatives: [
-        "Sanxenxo y Portonovo.",
-        "Corrubedo.",
-        "Pozas del río Pedras: paseo hasta las pozas naturales.",
-      ],
+      meals: ["Posible comida de mejillones en barco por unos 20 €; propuesta pendiente de decidir."],
+      alternatives: ["Sanxenxo y Portonovo.", "Corrubedo.", "Pozas del río Pedras: paseo hasta las pozas naturales."],
     },
     {
       id: "dia-5",
@@ -147,8 +139,7 @@ export const trip: Trip = {
       date: "2026-07-29",
       baseId: "finisterre",
       title: "Camino por la Costa da Morte",
-      summary:
-        "Cambio de alojamiento con una ruta de paradas costeras hasta Finisterre.",
+      summary: "Cambio de alojamiento con una ruta de paradas costeras hasta Finisterre.",
       stopIds: ["ezaro", "faro-finisterre", "base-finisterre"],
       status: "provisional",
       activities: [
@@ -160,9 +151,7 @@ export const trip: Trip = {
         { text: "Llegada y check-in en Finisterre." },
         { text: "Atardecer en Finisterre si quedan tiempo y energía." },
       ],
-      logistics: [
-        "Hacer las visitas de camino en coche hacia Finisterre, ajustando las paradas al tiempo disponible.",
-      ],
+      logistics: ["Hacer las visitas de camino en coche hacia Finisterre, ajustando las paradas al tiempo disponible."],
     },
     {
       id: "dia-6",
@@ -185,17 +174,14 @@ export const trip: Trip = {
       date: "2026-07-31",
       baseId: "sigueiro",
       title: "Santiago y última noche",
-      summary:
-        "Comida reservada en Santiago y resto del día abierto antes de dormir en Sigüeiro.",
+      summary: "Comida reservada en Santiago y resto del día abierto antes de dormir en Sigüeiro.",
       stopIds: ["santiago", "base-sigueiro"],
       status: "provisional",
       activities: [
         { text: "Tiempo libre en Santiago; resto del plan por concretar." },
         { text: "Traslado a Sigüeiro para pasar la última noche." },
       ],
-      meals: [
-        "15:00 · Comida en A Horta d’Obradoiro, en Santiago.",
-      ],
+      meals: ["15:00 · Comida en A Horta d’Obradoiro, en Santiago."],
     },
     {
       id: "dia-8",
@@ -206,12 +192,8 @@ export const trip: Trip = {
       summary: "Últimas horas abiertas antes del vuelo de vuelta.",
       stopIds: ["santiago"],
       status: "por-decidir",
-      activities: [
-        { text: "Tiempo libre o plan pendiente de concretar." },
-      ],
-      logistics: [
-        "Vuelo de Santiago a Bilbao; hora todavía pendiente (XX:XX).",
-      ],
+      activities: [{ text: "Tiempo libre o plan pendiente de concretar." }],
+      logistics: ["Vuelo de Santiago a Bilbao; hora todavía pendiente (XX:XX)."],
     },
   ],
   places: [
@@ -220,8 +202,7 @@ export const trip: Trip = {
       name: "Santiago de Compostela",
       category: "cultura",
       coordinates: { lat: 42.8806, lng: -8.5446 },
-      description:
-        "Punto de llegada y regreso, con visitas previstas al casco histórico y sus plazas.",
+      description: "Punto de llegada y regreso, con visitas previstas al casco histórico y sus plazas.",
       image: "/images/places/santiago-de-compostela.webp",
       dayIds: ["dia-1", "dia-7", "dia-8"],
       practicalNote: "El aparcamiento del centro suele requerir paciencia.",
@@ -244,8 +225,7 @@ export const trip: Trip = {
       name: "Cambados",
       category: "pueblo",
       coordinates: { lat: 42.5128, lng: -8.8139 },
-      description:
-        "Primera localidad del viaje, con Fefiñáns, la zona vieja, el paseo marítimo y Santa Mariña Dozo.",
+      description: "Primera localidad del viaje, con Fefiñáns, la zona vieja, el paseo marítimo y Santa Mariña Dozo.",
       image: "/images/places/cambados.webp",
       dayIds: ["dia-1"],
       baseId: "cambados",

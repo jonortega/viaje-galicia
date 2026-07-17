@@ -47,7 +47,7 @@ Las fechas usan el formato AAAA-MM-DD y el estado del viaje se calcula en Europe
 
 La portada provisional de Spotify está en:
 
-**public/images/spotify/playlist-cover.svg**
+**public/images/spotify/playlist-cover-placeholder.webp**
 
 Puedes sustituir ese archivo manteniendo el nombre. Si prefieres otro formato, guarda el nuevo archivo en la misma carpeta y cambia únicamente **playlist.image** en **src/data/trip.ts**.
 

@@ -65,18 +65,18 @@ export default function HomePage() {
             target='_blank'
             rel='noreferrer'
             aria-label={`Abrir la playlist ${trip.playlist.title} en Spotify`}
-            className='group grid min-h-44 grid-cols-[7.5rem_1fr] overflow-hidden rounded-[1.75rem] bg-[#183c34] text-white shadow-[0_18px_42px_rgba(24,60,52,.2)] transition-transform hover:-translate-y-0.5 active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#147d76] sm:grid-cols-[12rem_1fr]'
+            className='group grid grid-cols-1 overflow-hidden rounded-[1.75rem] bg-[#183c34] text-white shadow-[0_18px_42px_rgba(24,60,52,.2)] transition-transform hover:-translate-y-0.5 active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#147d76] sm:min-h-48 sm:grid-cols-[12rem_1fr]'
           >
-            <span className='relative min-h-44 overflow-hidden bg-[#dce7df]'>
+            <span className='relative aspect-square w-full overflow-hidden bg-[#dce7df] sm:aspect-auto sm:min-h-48'>
               <Image
                 src={trip.playlist.image}
                 alt={`Portada de la playlist ${trip.playlist.title}`}
                 fill
-                sizes='(max-width: 639px) 120px, 192px'
-                className='object-cover'
+                sizes='(max-width: 639px) calc(100vw - 2.5rem), 192px'
+                className='object-cover object-center'
               />
             </span>
-            <span className='flex min-w-0 flex-col justify-center p-4 sm:p-6'>
+            <span className='flex min-w-0 flex-col justify-center p-5 sm:p-6'>
               <span className='flex items-center gap-2 text-[.66rem] font-extrabold uppercase tracking-[.16em] text-[#8ce6aa]'>
                 <span className='grid size-7 place-items-center rounded-full bg-[#1ed760] text-[#102c25]'>
                   <Icon name='music' className='size-4' strokeWidth={2.2} />
@@ -85,7 +85,7 @@ export default function HomePage() {
               </span>
               <strong className='mt-3 text-xl leading-tight sm:text-2xl'>{trip.playlist.title}</strong>
               <span className='mt-1.5 text-xs leading-5 text-white/65 sm:text-sm'>{trip.playlist.subtitle}</span>
-              <span className='mt-4 inline-flex min-h-10 w-fit items-center gap-2 rounded-full bg-white px-3.5 py-2 text-xs font-extrabold text-[#183c34] transition-colors group-hover:bg-[#e8f7ed]'>
+              <span className='mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-extrabold text-[#183c34] transition-colors group-hover:bg-[#e8f7ed] sm:mt-4 sm:min-h-10 sm:w-fit sm:justify-start sm:px-3.5 sm:py-2'>
                 Abrir en Spotify
                 <Icon name='external' className='size-3.5' />
               </span>
