@@ -43,7 +43,11 @@ function FitPlaces({ places }: { places: Place[] }) {
     const bounds = L.latLngBounds(
       places.map((place) => [place.coordinates.lat, place.coordinates.lng]),
     );
-    map.fitBounds(bounds, { padding: [35, 35], maxZoom: 11 });
+    map.fitBounds(bounds, {
+      paddingTopLeft: [55, 70],
+      paddingBottomRight: [55, 135],
+      maxZoom: 11,
+    });
   }, [map, places]);
 
   return null;

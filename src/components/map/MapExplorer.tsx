@@ -2,12 +2,14 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CategoryIcon, Icon } from "@/components/Icon";
 import { PlaceVisual } from "@/components/PlaceVisual";
 import { placeCategoryMeta, trip } from "@/data/trip";
 import { cn } from "@/lib/cn";
-import type { PlaceCategory } from "@/types/trip";
+import { formatCompactDayDate, getTripStatus } from "@/lib/trip-date";
+import type { Place, PlaceCategory } from "@/types/trip";
 
 const TripMap = dynamic(() => import("@/components/map/TripMap"), {
   ssr: false,
@@ -25,88 +27,243 @@ const TripMap = dynamic(() => import("@/components/map/TripMap"), {
 
 type Filter = "todos" | PlaceCategory;
 
-export function MapExplorer({ initialPlaceId }: { initialPlaceId?: string }) {
-  const validInitial = trip.places.some((place) => place.id === initialPlaceId)
+const categories = Object.keys(placeCategoryMeta) as PlaceCategory[];
+
+function matchesDay(place: Place, dayId?: string) {
+  return !dayId || place.dayIds.includes(dayId);
+}
+
+function matchesFilter(place: Place, filter: Filter) {
+  return filter === "todos" || place.category === filter;
+}
+
+function filterPlaces(dayId: string | undefined, filter: Filter) {
+  return trip.places.filter(
+    (place) => matchesDay(place, dayId) && matchesFilter(place, filter),
+  );
+}
+
+export function MapExplorer({
+  initialDayId,
+  initialPlaceId,
+}: {
+  initialDayId?: string;
+  initialPlaceId?: string;
+}) {
+  const router = useRouter();
+  const selectedDayButtonRef = useRef<HTMLButtonElement>(null);
+  const validInitial = trip.places.some(
+    (place) =>
+      place.id === initialPlaceId && matchesDay(place, initialDayId),
+  )
     ? initialPlaceId
     : undefined;
   const [filter, setFilter] = useState<Filter>("todos");
   const [selectedId, setSelectedId] = useState<string | undefined>(validInitial);
 
-  const categories = Object.keys(placeCategoryMeta) as PlaceCategory[];
-  const filteredPlaces = useMemo(
-    () =>
-      filter === "todos"
-        ? trip.places
-        : trip.places.filter((place) => place.category === filter),
-    [filter],
+  const tripStatus = getTripStatus(trip);
+  const currentDayId =
+    tripStatus.phase === "during" ? tripStatus.currentDay?.id : undefined;
+  const dayPlaces = useMemo(
+    () => filterPlaces(initialDayId, "todos"),
+    [initialDayId],
   );
-  const selected = trip.places.find((place) => place.id === selectedId);
+  const filteredPlaces = useMemo(
+    () => dayPlaces.filter((place) => matchesFilter(place, filter)),
+    [dayPlaces, filter],
+  );
+  const selected = filteredPlaces.find((place) => place.id === selectedId);
+
+  useEffect(() => {
+    if (!initialDayId) return;
+    selectedDayButtonRef.current?.scrollIntoView({
+      block: "nearest",
+      inline: "center",
+    });
+  }, [initialDayId]);
 
   function changeFilter(next: Filter) {
     setFilter(next);
-    if (
-      selected &&
-      next !== "todos" &&
-      selected.category !== next
-    ) {
+    const selectedPlace = trip.places.find((place) => place.id === selectedId);
+    if (selectedPlace && !matchesFilter(selectedPlace, next)) {
       setSelectedId(undefined);
     }
   }
 
+  function changeDay(nextDayId?: string) {
+    const selectedPlace = trip.places.find((place) => place.id === selectedId);
+    if (
+      selectedPlace &&
+      (!matchesDay(selectedPlace, nextDayId) ||
+        !matchesFilter(selectedPlace, filter))
+    ) {
+      setSelectedId(undefined);
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (nextDayId) params.set("day", nextDayId);
+    else params.delete("day");
+    const query = params.toString();
+    router.replace(query ? `/mapa?${query}` : "/mapa", { scroll: false });
+  }
+
   return (
     <section className="px-3 pb-28 sm:px-8">
-      <div
-        aria-label="Filtrar lugares por categoría"
-        className="mb-3 flex flex-wrap gap-2"
-      >
-        <button
-          type="button"
-          onClick={() => changeFilter("todos")}
-          aria-pressed={filter === "todos"}
-          className={cn(
-            "min-h-10 rounded-full border px-3.5 text-xs font-extrabold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]",
-            filter === "todos"
-              ? "border-[#0b3157] bg-[#0b3157] text-white"
-              : "border-[#ded7ca] bg-white text-[#526773] hover:border-[#147d76]",
-          )}
-        >
-          Todos · {trip.places.length}
-        </button>
-        {categories.map((category) => {
-          const meta = placeCategoryMeta[category];
-          const active = filter === category;
-          const count = trip.places.filter(
-            (place) => place.category === category,
-          ).length;
-          return (
+      <div className="mb-3 space-y-3">
+        <div>
+          <p
+            id="day-filter-label"
+            className="mb-1.5 text-[.65rem] font-extrabold uppercase tracking-[.14em] text-[#60717c]"
+          >
+            Día
+          </p>
+          <div
+            role="group"
+            aria-labelledby="day-filter-label"
+            className="-mx-3 flex snap-x gap-2 overflow-x-auto px-3 pb-1 pr-8 [scrollbar-color:#bed8d0_transparent] [scrollbar-width:thin] sm:mx-0 sm:px-0 sm:pr-0"
+          >
             <button
-              key={category}
               type="button"
-              onClick={() => changeFilter(category)}
-              aria-pressed={active}
-              className="flex min-h-10 items-center gap-1.5 rounded-full border px-3 text-xs font-extrabold transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]"
-              style={{
-                color: active ? "white" : meta.color,
-                backgroundColor: active ? meta.color : "white",
-                borderColor: active ? meta.color : "#ded7ca",
-              }}
+              onClick={() => changeDay()}
+              aria-pressed={!initialDayId}
+              className={cn(
+                "flex min-h-10 shrink-0 snap-start items-center gap-1.5 rounded-full border px-3.5 text-xs font-extrabold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]",
+                !initialDayId
+                  ? "border-[#0b3157] bg-[#0b3157] text-white shadow-sm"
+                  : "border-[#ded7ca] bg-white text-[#526773] hover:border-[#147d76]",
+              )}
             >
-              <CategoryIcon category={category} className="size-3.5" />
-              {meta.label} · {count}
+              {!initialDayId ? <span aria-hidden="true">✓</span> : null}
+              Todos los días
             </button>
-          );
-        })}
+            {trip.days.map((day) => {
+              const active = day.id === initialDayId;
+              const isCurrent = day.id === currentDayId;
+              const dateLabel = formatCompactDayDate(day.date);
+
+              return (
+                <button
+                  key={day.id}
+                  ref={active ? selectedDayButtonRef : undefined}
+                  type="button"
+                  onClick={() => changeDay(day.id)}
+                  aria-pressed={active}
+                  aria-label={`${isCurrent ? "Hoy. " : ""}Día ${day.number}, ${dateLabel}: ${day.title}`}
+                  className={cn(
+                    "flex min-h-10 shrink-0 snap-start items-center gap-1.5 rounded-full border px-3.5 text-xs font-extrabold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]",
+                    active
+                      ? "border-[#0b3157] bg-[#0b3157] text-white shadow-sm"
+                      : isCurrent
+                        ? "border-[#d9a928] bg-[#fff8db] text-[#765e23] hover:border-[#147d76]"
+                        : "border-[#ded7ca] bg-white text-[#526773] hover:border-[#147d76]",
+                  )}
+                >
+                  {active ? <span aria-hidden="true">✓</span> : null}
+                  {isCurrent ? `Hoy · ${dateLabel}` : dateLabel}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div>
+          <p
+            id="category-filter-label"
+            className="mb-1.5 text-[.65rem] font-extrabold uppercase tracking-[.14em] text-[#60717c]"
+          >
+            Tipo de lugar
+          </p>
+          <div
+            role="group"
+            aria-labelledby="category-filter-label"
+            className="-mx-3 flex gap-2 overflow-x-auto px-3 pb-1 pr-8 [scrollbar-color:#bed8d0_transparent] [scrollbar-width:thin] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pr-0"
+          >
+            <button
+              type="button"
+              onClick={() => changeFilter("todos")}
+              aria-pressed={filter === "todos"}
+              className={cn(
+                "min-h-10 shrink-0 rounded-full border px-3.5 text-xs font-extrabold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]",
+                filter === "todos"
+                  ? "border-[#0b3157] bg-[#0b3157] text-white"
+                  : "border-[#ded7ca] bg-white text-[#526773] hover:border-[#147d76]",
+              )}
+            >
+              Todos · {dayPlaces.length}
+            </button>
+            {categories.map((category) => {
+              const meta = placeCategoryMeta[category];
+              const active = filter === category;
+              const count = dayPlaces.filter(
+                (place) => place.category === category,
+              ).length;
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => changeFilter(category)}
+                  aria-pressed={active}
+                  className="flex min-h-10 shrink-0 items-center gap-1.5 rounded-full border px-3 text-xs font-extrabold transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]"
+                  style={{
+                    color: active ? "white" : meta.color,
+                    backgroundColor: active ? meta.color : "white",
+                    borderColor: active ? meta.color : "#ded7ca",
+                  }}
+                >
+                  <CategoryIcon category={category} className="size-3.5" />
+                  {meta.label} · {count}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
-      <div className="relative h-[calc(100dvh-15.5rem)] min-h-[31rem] max-h-[45rem] overflow-hidden rounded-[1.7rem] border-4 border-white bg-[#dce9e5] shadow-[0_18px_45px_rgba(11,49,87,.14)]">
+      {!filteredPlaces.length ? (
+        <div
+          role="status"
+          className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-[#ded7ca] bg-white px-3.5 py-3 text-xs text-[#526773]"
+        >
+          <p className="flex items-center gap-2 font-semibold">
+            <Icon name="pin" className="size-4 shrink-0 text-[#147d76]" />
+            {initialDayId && filter !== "todos"
+              ? "No hay lugares de esta categoría previstos para este día."
+              : filter !== "todos"
+                ? "No hay lugares de esta categoría en el viaje."
+                : "No hay lugares previstos para este día."}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {filter !== "todos" ? (
+              <button
+                type="button"
+                onClick={() => changeFilter("todos")}
+                className="min-h-9 rounded-full bg-[#e4f1ec] px-3 font-extrabold text-[#147d76] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]"
+              >
+                Ver todos los tipos
+              </button>
+            ) : null}
+            {initialDayId ? (
+              <button
+                type="button"
+                onClick={() => changeDay()}
+                className="min-h-9 rounded-full bg-[#0b3157] px-3 font-extrabold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]"
+              >
+                Todos los días
+              </button>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
+
+      <div className="relative h-[calc(100dvh-20rem)] min-h-[28rem] max-h-[45rem] overflow-hidden rounded-[1.7rem] border-4 border-white bg-[#dce9e5] shadow-[0_18px_45px_rgba(11,49,87,.14)] sm:min-h-[31rem]">
         <TripMap
           places={filteredPlaces}
-          selectedId={selectedId}
+          selectedId={selected?.id}
           onSelect={setSelectedId}
         />
 
         <div className="pointer-events-none absolute right-3 top-3 z-[500] rounded-full bg-white/90 px-3 py-2 text-[.65rem] font-extrabold uppercase tracking-[.11em] text-[#0b3157] shadow-sm backdrop-blur">
-          {filteredPlaces.length} lugares
+          {filteredPlaces.length} {filteredPlaces.length === 1 ? "lugar" : "lugares"}
         </div>
 
         {selected ? (

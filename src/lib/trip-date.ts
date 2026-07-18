@@ -117,6 +117,22 @@ export function formatShortDate(date: string) {
     .replace(".", "");
 }
 
+export function formatCompactDayDate(date: string) {
+  const parts = new Intl.DateTimeFormat("es-ES", {
+    weekday: "short",
+    day: "numeric",
+  }).formatToParts(dateAtNoonUtc(date));
+  const weekday =
+    parts.find((part) => part.type === "weekday")?.value.replace(".", "") ??
+    "";
+  const day = parts.find((part) => part.type === "day")?.value ?? "";
+  const capitalizedWeekday = weekday
+    ? `${weekday[0].toLocaleUpperCase("es-ES")}${weekday.slice(1)}`
+    : "";
+
+  return [capitalizedWeekday, day].filter(Boolean).join(" ");
+}
+
 export function formatTripRange(start: string, end: string) {
   const startParts = dateParts(start);
   const endParts = dateParts(end);

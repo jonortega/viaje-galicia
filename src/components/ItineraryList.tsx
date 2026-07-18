@@ -55,6 +55,9 @@ export function ItineraryList() {
           const stops = day.stopIds
             .map((stopId) => trip.places.find((place) => place.id === stopId))
             .filter(Boolean);
+          const mappedPlaces = trip.places.filter((place) =>
+            place.dayIds.includes(day.id),
+          );
           const statusMeta = day.status ? dayStatusMeta[day.status] : undefined;
 
           return (
@@ -143,6 +146,23 @@ export function ItineraryList() {
                   >
                     <p className="text-sm leading-6 text-[#60717c]">{day.summary}</p>
 
+                    {mappedPlaces.length ? (
+                      <Link
+                        href={`/mapa?day=${day.id}`}
+                        aria-label={`Ver los lugares del día ${day.number} en el mapa`}
+                        className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-[#147d76] px-4 text-sm font-extrabold text-white transition-colors hover:bg-[#0b3157] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]"
+                      >
+                        <Icon name="map" className="size-4" />
+                        Ver lugares en el mapa
+                        <span
+                          aria-hidden="true"
+                          className="rounded-full bg-white/20 px-2 py-0.5 text-[.65rem]"
+                        >
+                          {mappedPlaces.length}
+                        </span>
+                      </Link>
+                    ) : null}
+
                     {day.activities?.length ? (
                       <section className="mt-4">
                         <h3 className="mb-2 flex items-center gap-2 text-[.68rem] font-extrabold uppercase tracking-[.13em] text-[#0b3157]">
@@ -201,7 +221,7 @@ export function ItineraryList() {
                                   </h4>
                                 </div>
                                 <Link
-                                  href={`/mapa?lugar=${place.id}`}
+                                  href={`/mapa?day=${day.id}&lugar=${place.id}`}
                                   aria-label={`Ver ${place.name} en el mapa`}
                                   className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-[#147d76] shadow-sm transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76]"
                                 >
