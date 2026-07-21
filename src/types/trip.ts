@@ -1,11 +1,14 @@
 export type PlaceCategory =
+  | "aeropuerto"
   | "alojamiento"
-  | "pueblo"
-  | "playa"
-  | "mirador"
   | "comida"
   | "cultura"
-  | "naturaleza";
+  | "isla"
+  | "naturaleza"
+  | "playa"
+  | "pueblo";
+
+export type PlaceStatus = "posible";
 
 export interface Coordinates {
   lat: number;
@@ -41,6 +44,7 @@ export interface Place {
   description: string;
   image?: string;
   dayIds: string[];
+  status?: PlaceStatus;
   baseId?: string;
   practicalNote?: string;
   mapsUrl: string;

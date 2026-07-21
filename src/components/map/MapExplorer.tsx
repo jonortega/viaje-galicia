@@ -27,7 +27,9 @@ const TripMap = dynamic(() => import("@/components/map/TripMap"), {
 
 type Filter = "todos" | PlaceCategory;
 
-const categories = Object.keys(placeCategoryMeta) as PlaceCategory[];
+const categories = (Object.keys(placeCategoryMeta) as PlaceCategory[]).filter(
+  (category) => trip.places.some((place) => place.category === category),
+);
 
 function matchesDay(place: Place, dayId?: string) {
   return !dayId || place.dayIds.includes(dayId);
@@ -288,12 +290,19 @@ export function MapExplorer({
                 >
                   <Icon name="close" className="size-4" />
                 </button>
-                <p
-                  className="text-[.62rem] font-extrabold uppercase tracking-[.14em]"
-                  style={{ color: placeCategoryMeta[selected.category].color }}
-                >
-                  {placeCategoryMeta[selected.category].label}
-                </p>
+                <div className="flex flex-wrap items-center gap-1.5 pr-7">
+                  <p
+                    className="text-[.62rem] font-extrabold uppercase tracking-[.14em]"
+                    style={{ color: placeCategoryMeta[selected.category].color }}
+                  >
+                    {placeCategoryMeta[selected.category].label}
+                  </p>
+                  {selected.status === "posible" ? (
+                    <span className="rounded-full bg-[#fff1bd] px-2 py-0.5 text-[.58rem] font-black uppercase tracking-[.1em] text-[#8a6200]">
+                      Posible
+                    </span>
+                  ) : null}
+                </div>
                 <h2 className="mt-1 pr-7 text-lg font-black leading-tight text-[#0b3157]">
                   {selected.name}
                 </h2>

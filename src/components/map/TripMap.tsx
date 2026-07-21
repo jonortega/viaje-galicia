@@ -12,13 +12,14 @@ import { placeCategoryMeta } from "@/data/trip";
 import type { Place, PlaceCategory } from "@/types/trip";
 
 const glyphs: Record<PlaceCategory, string> = {
+  aeropuerto: '<path d="M22 16.5 13.5 12V4.5a1.5 1.5 0 0 0-3 0V12L2 16.5v2l8.5-2.5V21l1.5 1 1.5-1v-5l8.5 2.5Z"/>',
   alojamiento: '<path d="M3 17V8m0 6h18v4M7 14v-4h5a3 3 0 0 1 3 3v1"/>',
-  pueblo: '<path d="M4 20V8l8-5 8 5v12M9 20v-5h6v5M8 10h.01M12 10h.01M16 10h.01"/>',
-  playa: '<path d="M2 10c3 0 3-2 6-2s3 2 6 2 3-2 6-2M2 15c3 0 3-2 6-2s3 2 6 2 3-2 6-2"/>',
-  mirador: '<circle cx="12" cy="12" r="8"/><path d="m15 9-2 4-4 2 2-4Z"/>',
   comida: '<path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M16 3v18M16 3c4 2 4 7 0 9"/>',
   cultura: '<path d="m3 9 9-5 9 5M5 9h14M7 9v9M12 9v9M17 9v9M4 20h16"/>',
+  isla: '<path d="M3 19h18M5 19c1.5-4 4-6 7-6s5.5 2 7 6M12 13V6M12 6c-2 0-3.5 1-4.5 2.5M12 6c2 0 3.5 1 4.5 2.5M12 6c-1-2-2.5-3-4.5-3M12 6c1-2 2.5-3 4.5-3"/>',
   naturaleza: '<path d="M20 4C11 4 5 9 5 16c0 2 1 4 3 5 1-7 5-11 12-17ZM5 20c3-4 7-7 12-9"/>',
+  playa: '<path d="M2 10c3 0 3-2 6-2s3 2 6 2 3-2 6-2M2 15c3 0 3-2 6-2s3 2 6 2 3-2 6-2"/>',
+  pueblo: '<path d="M4 20V8l8-5 8 5v12M9 20v-5h6v5M8 10h.01M12 10h.01M16 10h.01"/>',
 };
 
 function createMarkerIcon(place: Place, selected: boolean) {

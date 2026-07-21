@@ -214,9 +214,16 @@ export function ItineraryList() {
                                   <p className="text-[.62rem] font-extrabold uppercase tracking-[.12em] text-[#8a969e]">
                                     Parada {index + 1}
                                   </p>
-                                  <h4 className="truncate text-sm font-extrabold text-[#173342]">
-                                    {place.name}
-                                  </h4>
+                                  <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+                                    <h4 className="min-w-0 max-w-full text-sm font-extrabold leading-tight text-[#173342]">
+                                      {place.name}
+                                    </h4>
+                                    {place.status === "posible" ? (
+                                      <span className="shrink-0 rounded-full bg-[#fff1bd] px-1.5 py-0.5 text-[.55rem] font-black uppercase tracking-[.08em] text-[#8a6200]">
+                                        Posible
+                                      </span>
+                                    ) : null}
+                                  </div>
                                 </div>
                                 <Link
                                   href={`/mapa?day=${day.id}&lugar=${place.id}`}

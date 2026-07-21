@@ -21,6 +21,8 @@ export type IconName =
   | "waves"
   | "utensils"
   | "landmark"
+  | "plane"
+  | "island"
   | "leaf";
 
 interface IconProps {
@@ -51,6 +53,8 @@ export function Icon({ name, className = "size-5", strokeWidth = 1.8 }: IconProp
     waves: <><path d="M2 9c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 3 2M2 14c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 3 2M2 19c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 3 2" /></>,
     utensils: <><path d="M7 3v8M4 3v5a3 3 0 0 0 6 0V3M7 11v10M16 3v18M16 3c4 2 4 7 0 9" /></>,
     landmark: <><path d="m3 10 9-6 9 6M5 10h14M6 10v8M10 10v8M14 10v8M18 10v8M3 21h18M4 18h16" /></>,
+    plane: <><path d="M22 16.5 13.5 12V4.5a1.5 1.5 0 0 0-3 0V12L2 16.5v2l8.5-2.5V21l1.5 1 1.5-1v-5l8.5 2.5Z" /></>,
+    island: <><path d="M3 19h18M5 19c1.5-4 4-6 7-6s5.5 2 7 6M12 13V6M12 6c-2 0-3.5 1-4.5 2.5M12 6c2 0 3.5 1 4.5 2.5M12 6c-1-2-2.5-3-4.5-3M12 6c1-2 2.5-3 4.5-3" /></>,
     leaf: <><path d="M20 4C11 4 5 9 5 16c0 2 1 4 3 5 1-7 5-11 12-17Z" /><path d="M5 20c3-4 7-7 12-9" /></>,
   }[name];
 
@@ -78,13 +82,14 @@ export function CategoryIcon({
   className?: string;
 }) {
   const names: Record<PlaceCategory, IconName> = {
+    aeropuerto: "plane",
     alojamiento: "bed",
-    pueblo: "building",
-    playa: "waves",
-    mirador: "compass",
     comida: "utensils",
     cultura: "landmark",
+    isla: "island",
     naturaleza: "leaf",
+    playa: "waves",
+    pueblo: "building",
   };
   return <Icon name={names[category]} className={className} />;
 }
