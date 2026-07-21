@@ -105,6 +105,10 @@ export const trip: Trip = {
       activities: [
         { text: "Isla de Arousa." },
         { text: "O Grove." },
+        {
+          time: "12:00",
+          text: "Comida de mejillones en barco con reserva confirmada. Salida desde O Grove.",
+        },
         { text: "Isla de Toja." },
         { text: "Playa de la Lanzada." },
       ],
@@ -136,7 +140,6 @@ export const trip: Trip = {
       stopIds: ["combarro", "sanxenxo", "portonovo", "corrubedo", "pozas-rio-pedras"],
       status: "provisional",
       activities: [{ text: "Visitar Combarro." }],
-      meals: ["Posible comida de mejillones en barco por unos 20 €; propuesta pendiente de decidir."],
       alternatives: ["Sanxenxo y Portonovo.", "Corrubedo.", "Pozas del río Pedras: paseo hasta las pozas naturales."],
     },
     {
