@@ -30,9 +30,7 @@ export function ItineraryList() {
   const tripStatus = getTripStatus(trip);
   const currentDayId =
     tripStatus.phase === "during" ? tripStatus.currentDay?.id : undefined;
-  const [openDays, setOpenDays] = useState<Set<string>>(
-    () => new Set([currentDayId ?? trip.days[0].id]),
-  );
+  const [openDays, setOpenDays] = useState<Set<string>>(() => new Set());
 
   function toggleDay(dayId: string) {
     setOpenDays((current) => {

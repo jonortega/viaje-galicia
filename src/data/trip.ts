@@ -19,6 +19,10 @@ export const trip: Trip = {
   endDate: "2026-08-01",
   timeZone: "Europe/Madrid",
   travelers: 4,
+  hero: {
+    image: "/images/trip/hero.webp",
+    alt: "Ilustración de la costa gallega junto al océano Atlántico",
+  },
   playlist: {
     title: "Muñeiras y otros éxitos",
     subtitle: "Pulsa para abrir Spotify",

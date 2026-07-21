@@ -19,6 +19,11 @@ export interface PlaylistInfo {
   image: string;
 }
 
+export interface TripHeroInfo {
+  image: string;
+  alt: string;
+}
+
 export interface AccommodationBase {
   id: string;
   name: string;
@@ -72,6 +77,7 @@ export interface Trip {
   endDate: string;
   timeZone: string;
   travelers: number;
+  hero: TripHeroInfo;
   playlist: PlaylistInfo;
   bases: AccommodationBase[];
   days: TripDay[];
