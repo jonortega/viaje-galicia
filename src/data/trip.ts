@@ -149,15 +149,7 @@ export const trip: Trip = {
       baseId: "finisterre",
       title: "Camino por la Costa da Morte",
       summary: "Cambio de alojamiento con una ruta de paradas costeras hasta Finisterre.",
-      stopIds: [
-        "castro-barona",
-        "noia",
-        "muros",
-        "playa-carnota",
-        "ezaro",
-        "base-finisterre",
-        "faro-finisterre",
-      ],
+      stopIds: ["castro-barona", "noia", "muros", "playa-carnota", "ezaro", "base-finisterre", "faro-finisterre"],
       status: "provisional",
       activities: [
         { text: "Castro de Baroña, asentamiento celta." },
@@ -219,7 +211,7 @@ export const trip: Trip = {
       description: "Terminal de pasajeros utilizada para la llegada y el vuelo de regreso del viaje.",
       image: "/images/places/aeropuerto-santiago.webp",
       dayIds: ["dia-1", "dia-8"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.8918668,-8.4204772",
+      mapsUrl: "https://maps.app.goo.gl/L24BPPigTznYd89A7",
     },
     {
       id: "santiago",
@@ -230,7 +222,7 @@ export const trip: Trip = {
       image: "/images/places/santiago-de-compostela.webp",
       dayIds: ["dia-1"],
       practicalNote: "El aparcamiento del centro suele requerir paciencia.",
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.8805003,-8.5457600",
+      mapsUrl: "https://maps.app.goo.gl/exUXpssRGhzT8bg89",
     },
     {
       id: "base-cambados",
@@ -242,8 +234,8 @@ export const trip: Trip = {
       image: "/images/places/alojamiento-cambados.webp",
       dayIds: ["dia-1"],
       baseId: "cambados",
-      practicalNote: "Referencia en la plaza de Fefiñáns; dirección exacta pendiente.",
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.5192285,-8.8135434",
+      practicalNote: "Referencia en la plaza de Fefiñáns; dirección exacta en el mapa.",
+      mapsUrl: "https://maps.app.goo.gl/Qgs9geJnBBfrqPfH8",
     },
     {
       id: "santa-marina-dozo",
@@ -253,7 +245,7 @@ export const trip: Trip = {
       description: "Ruinas de la antigua iglesia de Santa Mariña Dozo y su cementerio, en Cambados.",
       image: "/images/places/ruinas-santa-marina-dozo.webp",
       dayIds: ["dia-1"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.5118969,-8.8075074",
+      mapsUrl: "https://maps.app.goo.gl/XTLCdSm2kuTVXFUM9",
     },
     {
       id: "illa-arousa",
@@ -263,7 +255,7 @@ export const trip: Trip = {
       description: "Porto do Xufre como punto práctico para comenzar la visita a la isla y su paisaje de ría.",
       image: "/images/places/illa-de-arousa.webp",
       dayIds: ["dia-2"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.5654751,-8.8680386",
+      mapsUrl: "https://maps.app.goo.gl/2vSyKShwBbsroNhi9",
     },
     {
       id: "o-grove",
@@ -273,7 +265,7 @@ export const trip: Trip = {
       description: "Praza do Corgo como referencia central para la parada en este pueblo marinero.",
       image: "/images/places/o-grove.webp",
       dayIds: ["dia-2"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.4962412,-8.8641868",
+      mapsUrl: "https://maps.app.goo.gl/3yhvhdrGd5faeKLT7",
     },
     {
       id: "isla-toja",
@@ -283,7 +275,7 @@ export const trip: Trip = {
       description: "La capilla de las Conchas sirve como punto reconocible para la visita a la isla.",
       image: "/images/places/isla-de-toja.webp",
       dayIds: ["dia-2"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.4840081,-8.8465466",
+      mapsUrl: "https://maps.app.goo.gl/htQddmyYqrmef2HJ7",
     },
     {
       id: "a-lanzada",
@@ -293,7 +285,7 @@ export const trip: Trip = {
       description: "Acceso público de referencia a la extensa playa atlántica incluida en la ruta del domingo.",
       image: "/images/places/playa-de-la-lanzada.webp",
       dayIds: ["dia-2"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.4538414,-8.8756833",
+      mapsUrl: "https://maps.app.goo.gl/H17fYp6qY5mFJAqh7",
     },
     {
       id: "isla-ons",
@@ -303,7 +295,7 @@ export const trip: Trip = {
       description: "Muelle de llegada de los barcos y punto práctico para comenzar la excursión por Ons.",
       image: "/images/places/isla-de-ons.webp",
       dayIds: ["dia-3"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.3771727,-8.9295275",
+      mapsUrl: "https://maps.app.goo.gl/bfUMQB82qjwhHJjEA",
     },
     {
       id: "combarro",
@@ -313,7 +305,7 @@ export const trip: Trip = {
       description: "Praza da Fonte, en el conjunto histórico de hórreos junto al mar y calles de piedra.",
       image: "/images/places/combarro.webp",
       dayIds: ["dia-4"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.4337021,-8.7056180",
+      mapsUrl: "https://maps.app.goo.gl/6vLfUjz1JHZmabXs7",
     },
     {
       id: "sanxenxo",
@@ -324,7 +316,7 @@ export const trip: Trip = {
       image: "/images/places/sanxenxo.webp",
       dayIds: ["dia-4"],
       status: "posible",
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.4001420,-8.8069623",
+      mapsUrl: "https://maps.app.goo.gl/K19VYASFvQXCEdSi7",
     },
     {
       id: "portonovo",
@@ -335,7 +327,7 @@ export const trip: Trip = {
       image: "/images/places/portonovo.webp",
       dayIds: ["dia-4"],
       status: "posible",
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.3955761,-8.8220062",
+      mapsUrl: "https://maps.app.goo.gl/zXwg43VuTbqUkYGR6",
     },
     {
       id: "corrubedo",
@@ -347,7 +339,7 @@ export const trip: Trip = {
       dayIds: ["dia-4"],
       status: "posible",
       practicalNote: "Marcador de referencia en el núcleo de Corrubedo.",
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.5761851,-9.0699626",
+      mapsUrl: "https://maps.app.goo.gl/fDoECwfuhitj42Zt9",
     },
     {
       id: "pozas-rio-pedras",
@@ -358,7 +350,7 @@ export const trip: Trip = {
       image: "/images/places/pozas-rio-pedras.webp",
       dayIds: ["dia-4"],
       status: "posible",
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.6356781,-8.9548990",
+      mapsUrl: "https://maps.app.goo.gl/Sa4zaGkacjEvgjQn8",
     },
     {
       id: "castro-barona",
@@ -368,7 +360,7 @@ export const trip: Trip = {
       description: "Yacimiento arqueológico costero situado sobre una península rocosa.",
       image: "/images/places/castro-de-barona.webp",
       dayIds: ["dia-5"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.6946688,-9.0319627",
+      mapsUrl: "https://maps.app.goo.gl/npN7JfwZVALqviAd6",
     },
     {
       id: "noia",
@@ -378,7 +370,7 @@ export const trip: Trip = {
       description: "Praza do Tapal como referencia para la parada en el casco histórico de Noia.",
       image: "/images/places/noia.webp",
       dayIds: ["dia-5"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.7822552,-8.8889416",
+      mapsUrl: "https://maps.app.goo.gl/d5WNU2xD5L531Pom6",
     },
     {
       id: "muros",
@@ -388,7 +380,7 @@ export const trip: Trip = {
       description: "Praza do Curro como punto central para el paseo por la villa marinera de Muros.",
       image: "/images/places/muros.webp",
       dayIds: ["dia-5"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.7745810,-9.0577101",
+      mapsUrl: "https://maps.app.goo.gl/bBDYQ2pWRUkgeXS69",
     },
     {
       id: "playa-carnota",
@@ -398,7 +390,7 @@ export const trip: Trip = {
       description: "Acceso público de referencia a la extensa playa de Carnota durante la ruta costera.",
       image: "/images/places/playa-de-carnota.webp",
       dayIds: ["dia-5"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.8272114,-9.1000241",
+      mapsUrl: "https://maps.app.goo.gl/mKPtGaDJKCaMinBU6",
     },
     {
       id: "ezaro",
@@ -408,7 +400,7 @@ export const trip: Trip = {
       description: "Cascada del río Xallas junto a su desembocadura, con acceso por la pasarela de visitantes.",
       image: "/images/places/cascada-de-ezaro.webp",
       dayIds: ["dia-5"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.9128755,-9.1164439",
+      mapsUrl: "https://maps.app.goo.gl/dfWkqhRaKq6hm6GaA",
     },
     {
       id: "base-finisterre",
@@ -420,19 +412,18 @@ export const trip: Trip = {
       image: "/images/places/alojamiento-finisterre.webp",
       dayIds: ["dia-5"],
       baseId: "finisterre",
-      practicalNote: "Referencia en la plaza de la Constitución; dirección exacta pendiente.",
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.9059587,-9.2626941",
+      practicalNote: "Referencia en la plaza de la Constitución; dirección exacta en el mapa.",
+      mapsUrl: "https://maps.app.goo.gl/b8X63RLcEnQJWEmj6",
     },
     {
       id: "faro-finisterre",
       name: "Faro de Finisterre",
       category: "cultura",
       coordinates: { lat: 42.8824167, lng: -9.2717778 },
-      description:
-        "Faro situado en el cabo Finisterre, un conocido final de ruta con vistas al océano Atlántico.",
+      description: "Faro situado en el cabo Finisterre, un conocido final de ruta con vistas al océano Atlántico.",
       image: "/images/places/faro-de-finisterre.webp",
       dayIds: ["dia-5"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.8824167,-9.2717778",
+      mapsUrl: "https://maps.app.goo.gl/Xs8z4fgBHV5Bw7rU7",
     },
     {
       id: "muxia",
@@ -442,7 +433,7 @@ export const trip: Trip = {
       description: "El puerto de Muxía sirve como referencia central para recorrer la villa y su frente marítimo.",
       image: "/images/places/muxia.webp",
       dayIds: ["dia-6"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=43.1048548,-9.2146537",
+      mapsUrl: "https://maps.app.goo.gl/j5fxEkrjw1p21sUu7",
     },
     {
       id: "camarinas",
@@ -452,7 +443,7 @@ export const trip: Trip = {
       description: "Praza da Insuela como referencia central para la parada en Camariñas.",
       image: "/images/places/camarinas.webp",
       dayIds: ["dia-6"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=43.1302171,-9.1803485",
+      mapsUrl: "https://maps.app.goo.gl/FkazkWrZ8Fa7LGQH8",
     },
     {
       id: "faro-vilan",
@@ -462,7 +453,7 @@ export const trip: Trip = {
       description: "Faro situado sobre el cabo Vilán, en la costa próxima a Camariñas.",
       image: "/images/places/faro-de-vilan.webp",
       dayIds: ["dia-6"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=43.1603606,-9.2113859",
+      mapsUrl: "https://maps.app.goo.gl/fidCKQtruCbFFzHNA",
     },
     {
       id: "a-horta-obradoiro",
@@ -472,7 +463,7 @@ export const trip: Trip = {
       description: "Restaurante de la comida reservada en Santiago, situado en la rúa das Hortas.",
       image: "/images/places/a-horta-d-obradoiro.webp",
       dayIds: ["dia-7"],
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.8807746,-8.5472433",
+      mapsUrl: "https://maps.app.goo.gl/pMpqh9VaMKD6UAKH8",
     },
     {
       id: "base-sigueiro",
@@ -483,8 +474,8 @@ export const trip: Trip = {
       image: "/images/places/alojamiento-sigueiro.webp",
       dayIds: ["dia-7"],
       baseId: "sigueiro",
-      practicalNote: "Referencia en el centro; dirección exacta pendiente.",
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.9687859,-8.4417454",
+      practicalNote: "Referencia en el centro; dirección exacta en el mapa.",
+      mapsUrl: "https://maps.app.goo.gl/M3jAXTiEvA7n18nQ9",
     },
   ],
 };
