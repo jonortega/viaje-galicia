@@ -43,7 +43,7 @@ export function ItineraryList() {
 
   return (
     <section className="relative px-5 pb-32 sm:px-8">
-      <div className="absolute bottom-36 left-[2.34rem] top-7 w-px bg-gradient-to-b from-[#147d76] via-[#bed8d0] to-transparent sm:left-[3.34rem]" />
+      <div className="absolute bottom-36 left-[2.34rem] top-7 w-px bg-linear-to-b from-[#147d76] via-[#bed8d0] to-transparent sm:left-[3.34rem]" />
 
       <div className="space-y-4">
         {trip.days.map((day) => {
@@ -103,7 +103,7 @@ export function ItineraryList() {
                       {statusMeta ? (
                         <span
                           className={cn(
-                            "rounded-full px-2 py-0.5 text-[.6rem] font-black uppercase tracking-[.1em]",
+                            "rounded-full px-2 py-0.5 text-[.6rem] font-black uppercase tracking-widest",
                             statusMeta.className,
                           )}
                         >

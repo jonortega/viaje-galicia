@@ -28,7 +28,7 @@ export default function HomePage() {
 
   return (
     <main className='mx-auto w-full max-w-6xl pb-28 md:pb-32'>
-      <section className='relative isolate min-h-[22rem] overflow-hidden rounded-b-[2.6rem] bg-[#0b3157] px-5 pb-8 pt-7 text-white shadow-[0_20px_60px_rgba(11,49,87,.18)] sm:mx-5 sm:mt-5 sm:rounded-[2.6rem] sm:px-9 sm:pt-9'>
+      <section className='relative isolate min-h-88 overflow-hidden rounded-b-[2.6rem] bg-[#0b3157] px-5 pb-8 pt-7 text-white shadow-[0_20px_60px_rgba(11,49,87,.18)] sm:mx-5 sm:mt-5 sm:rounded-[2.6rem] sm:px-9 sm:pt-9'>
         <TripHero {...trip.hero} />
         <div
           aria-hidden='true'
