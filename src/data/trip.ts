@@ -149,7 +149,15 @@ export const trip: Trip = {
       baseId: "finisterre",
       title: "Camino por la Costa da Morte",
       summary: "Cambio de alojamiento con una ruta de paradas costeras hasta Finisterre.",
-      stopIds: ["castro-barona", "noia", "muros", "playa-carnota", "ezaro", "base-finisterre"],
+      stopIds: [
+        "castro-barona",
+        "noia",
+        "muros",
+        "playa-carnota",
+        "ezaro",
+        "base-finisterre",
+        "faro-finisterre",
+      ],
       status: "provisional",
       activities: [
         { text: "Castro de Baroña, asentamiento celta." },
@@ -159,6 +167,7 @@ export const trip: Trip = {
         { text: "Cascada de Ézaro." },
         { text: "Llegada y check-in en Finisterre." },
         { text: "Atardecer en Finisterre si quedan tiempo y energía." },
+        { text: "Faro de Finisterre." },
       ],
       logistics: ["Hacer las visitas de camino en coche hacia Finisterre, ajustando las paradas al tiempo disponible."],
     },
@@ -413,6 +422,17 @@ export const trip: Trip = {
       baseId: "finisterre",
       practicalNote: "Referencia en la plaza de la Constitución; dirección exacta pendiente.",
       mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.9059587,-9.2626941",
+    },
+    {
+      id: "faro-finisterre",
+      name: "Faro de Finisterre",
+      category: "cultura",
+      coordinates: { lat: 42.8824167, lng: -9.2717778 },
+      description:
+        "Faro situado en el cabo Finisterre, un conocido final de ruta con vistas al océano Atlántico.",
+      image: "/images/places/faro-de-finisterre.webp",
+      dayIds: ["dia-5"],
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=42.8824167,-9.2717778",
     },
     {
       id: "muxia",
