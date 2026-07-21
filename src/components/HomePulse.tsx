@@ -26,18 +26,21 @@ export function HomePulse() {
     return (
       <section className='grid gap-3 sm:grid-cols-[.85fr_1.15fr]'>
         <div className='rounded-[1.6rem] bg-[#e4f1ec] p-5 text-[#0b3157]'>
-          <div className='mb-4 flex items-center gap-2 text-xs font-extrabold uppercase tracking-[.16em] text-[#147d76]'>
-            <Icon name='clock' className='size-4' />
+          <div className='flex items-center justify-center gap-2 text-xs font-extrabold uppercase tracking-[.16em] text-[#147d76]'>
+            <Icon name='clock' className='size-4 shrink-0' />
             Cuenta atrás
           </div>
-          <div className='flex items-end gap-2 mb-2'>
-            <strong className='text-4xl font-black tracking-[-.06em]'>{status.days}</strong>
-            <span className='pb-1 text-lg font-bold'>días</span>
-            <span className='mb-1 rounded-full bg-white/70 px-2.5 py-1 text-sm font-extrabold'>{status.hours} h</span>
+          <div className='mt-3 flex items-baseline justify-center gap-2 whitespace-nowrap'>
+            <span className='inline-flex items-baseline gap-1.5'>
+              <strong className='text-4xl font-black leading-none tabular-nums tracking-[-.06em]'>{status.days}</strong>
+              <span className='text-base font-bold text-[#496875]'>días</span>
+            </span>
+            <span className='text-sm font-bold text-[#7b8a92]'>y</span>
+            <span className='inline-flex items-baseline gap-1.5'>
+              <strong className='text-4xl font-black leading-none tabular-nums tracking-[-.06em]'>{status.hours}</strong>
+              <span className='text-base font-bold text-[#496875]'>horas</span>
+            </span>
           </div>
-          {/* <p className='mt-3 text-sm leading-6 text-[#496875]'>
-            Tiempo suficiente para hacer una playlist mejor. O intentarlo.
-          </p> */}
         </div>
 
         <div className='rounded-[1.6rem] border border-[#e5ddcf] bg-white p-5 shadow-[0_14px_35px_rgba(26,54,75,.07)]'>
