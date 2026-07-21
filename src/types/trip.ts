@@ -78,6 +78,7 @@ export interface Trip {
   timeZone: string;
   travelers: number;
   hero: TripHeroInfo;
+  driveFolderUrl: string;
   playlist: PlaylistInfo;
   bases: AccommodationBase[];
   days: TripDay[];

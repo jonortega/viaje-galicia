@@ -23,6 +23,7 @@ export const trip: Trip = {
     image: "/images/trip/hero.webp",
     alt: "Ilustración de la costa gallega junto al océano Atlántico",
   },
+  driveFolderUrl: "https://drive.google.com/drive/folders/1xYp6VXfjA6n7ZgJ-iNnfOJQT_K_K4SxC?usp=sharing",
   playlist: {
     title: "Muñeiras y otros éxitos",
     subtitle: "Pulsa para abrir Spotify",

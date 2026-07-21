@@ -11,6 +11,7 @@ export type IconName =
   | "car"
   | "pin"
   | "users"
+  | "folder"
   | "external"
   | "chevron"
   | "close"
@@ -40,6 +41,7 @@ export function Icon({ name, className = "size-5", strokeWidth = 1.8 }: IconProp
     car: <><path d="m5 16-1 3M19 16l1 3M3 13l2-6h14l2 6v4H3Z" /><path d="M7 17v2M17 17v2M7 13h.01M17 13h.01" /></>,
     pin: <><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></>,
     users: <><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></>,
+    folder: <><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /><path d="M3 10h18" /></>,
     external: <><path d="M14 4h6v6M20 4l-9 9" /><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6" /></>,
     chevron: <path d="m7 10 5 5 5-5" />,
     close: <path d="m6 6 12 12M18 6 6 18" />,

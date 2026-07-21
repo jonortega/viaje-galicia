@@ -62,6 +62,34 @@ export default function HomePage() {
       <div className='space-y-8 px-5 pt-7 sm:px-8'>
         <HomePulse />
 
+        <section aria-labelledby='documents-title'>
+          <div className='rounded-[1.6rem] border border-[#e5ddcf] bg-white p-4 shadow-[0_12px_28px_rgba(26,54,75,.055)] sm:flex sm:items-center sm:justify-between sm:gap-5 sm:p-5'>
+            <div className='flex min-w-0 flex-1 items-start gap-3'>
+              <span className='grid size-11 shrink-0 place-items-center rounded-xl bg-[#e4f1ec] text-[#147d76]'>
+                <Icon name='folder' className='size-5' />
+              </span>
+              <div className='min-w-0'>
+                <h2 id='documents-title' className='text-lg font-black text-[#0b3157]'>
+                  Documentos del viaje
+                </h2>
+                <p className='mt-1 text-sm leading-5 text-[#60717c]'>
+                  Billetes, reservas y el documento original de planificación.
+                </p>
+              </div>
+            </div>
+            <a
+              href={trip.driveFolderUrl}
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='Abrir la carpeta de documentos del viaje en Google Drive en una pestaña nueva'
+              className='mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-[#e4f1ec] px-4 py-2.5 text-sm font-extrabold text-[#0b3157] transition-colors hover:bg-[#d5e9e1] active:bg-[#c8dfd6] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#147d76] sm:mt-0 sm:w-auto sm:shrink-0'
+            >
+              Abrir carpeta de Drive
+              <Icon name='external' className='size-4' />
+            </a>
+          </div>
+        </section>
+
         <section aria-label='Playlist del viaje'>
           <a
             href={trip.playlist.url}
