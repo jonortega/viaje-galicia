@@ -4,7 +4,7 @@ import { HomePulse } from "@/components/HomePulse";
 import { Icon } from "@/components/Icon";
 import { TripHero } from "@/components/TripHero";
 import { trip } from "@/data/trip";
-import { formatShortDate } from "@/lib/trip-date";
+import { formatShortDate, formatTripRange } from "@/lib/trip-date";
 
 function addCalendarDays(date: string, days: number) {
   const value = new Date(`${date}T12:00:00Z`);
@@ -28,12 +28,35 @@ export default function HomePage() {
 
   return (
     <main className='mx-auto w-full max-w-6xl pb-28 md:pb-32'>
-      <section
-        aria-label='Portada del viaje'
-        className='relative isolate aspect-[4/3] overflow-hidden rounded-b-[2.6rem] bg-[#0b3157] shadow-[0_20px_60px_rgba(11,49,87,.18)] sm:mx-5 sm:mt-5 sm:aspect-video sm:rounded-[2.6rem] lg:aspect-[2/1]'
-      >
-        <h1 className='sr-only'>{trip.title}</h1>
+      <section className='relative isolate min-h-[22rem] overflow-hidden rounded-b-[2.6rem] bg-[#0b3157] px-5 pb-8 pt-7 text-white shadow-[0_20px_60px_rgba(11,49,87,.18)] sm:mx-5 sm:mt-5 sm:rounded-[2.6rem] sm:px-9 sm:pt-9'>
         <TripHero {...trip.hero} />
+        <div
+          aria-hidden='true'
+          className='absolute inset-0 bg-[linear-gradient(90deg,rgba(7,31,55,.72)_0%,rgba(7,31,55,.52)_52%,rgba(7,31,55,.28)_100%)]'
+        />
+
+        <div className='relative z-10 flex items-center justify-between'>
+          <span className='inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[.68rem] font-extrabold uppercase tracking-[.18em] backdrop-blur-sm'>
+            <Icon name='compass' className='size-4 text-[#f6c94c]' />
+            Viaje por Galicia
+          </span>
+          <span className='grid size-11 place-items-center rounded-full bg-[#f6c94c] text-[#0b3157] shadow-lg shadow-black/10'>
+            <Icon name='shell' className='size-6' strokeWidth={2.1} />
+          </span>
+        </div>
+
+        <div className='relative z-10 mt-12 max-w-2xl'>
+          <p className='mb-2 text-sm font-bold text-[#a8d8dc]'>{formatTripRange(trip.startDate, trip.endDate)}</p>
+          <h1 className='text-[3.4rem] font-black leading-[.88] tracking-[-.07em] sm:text-7xl'>
+            Galicia
+            <span className='block text-[#f6c94c]'>2026</span>
+          </h1>
+          {trip.subtitle ? (
+            <p className='mt-5 max-w-sm text-base font-medium leading-6 text-white/72 sm:text-lg'>
+              {trip.subtitle}
+            </p>
+          ) : null}
+        </div>
       </section>
 
       <div className='space-y-8 px-5 pt-7 sm:px-8'>
