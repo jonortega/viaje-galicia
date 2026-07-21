@@ -73,7 +73,7 @@ export default function HomePage() {
                   Documentos del viaje
                 </h2>
                 <p className='mt-1 text-sm leading-5 text-[#60717c]'>
-                  Billetes, reservas y el documento original de planificación.
+                  Billetes de avión, alquiler coche, reservas...
                 </p>
               </div>
             </div>
