@@ -64,7 +64,7 @@ export const trip: Trip = {
       date: "2026-07-25",
       baseId: "cambados",
       title: "Santiago en fiestas y Cambados",
-      summary: "Llegada temprana, Santiago en fiestas y primera tarde en Cambados antes de recoger a Ibón.",
+      summary: "Llegada temprana, Santiago en fiestas y primera tarde en Cambados antes de recoger a Ibon.",
       stopIds: ["aeropuerto-santiago", "santiago", "base-cambados", "santa-marina-dozo"],
       status: "confirmado",
       activities: [
