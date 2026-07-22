@@ -8,12 +8,12 @@ export const metadata: Metadata = {
 
 export default function ItineraryPage() {
   return (
-    <main className="mx-auto w-full max-w-4xl">
+    <main className='mx-auto w-full max-w-4xl'>
       <PageHeader
-        eyebrow="Ocho días"
-        title="La ruta, día a día"
-        description="Planes confirmados, opciones flexibles y detalles prácticos de cada jornada."
-        icon="calendar"
+        eyebrow='Ocho días'
+        title='Itinerario de viaje'
+        description='Planes confirmados, opciones flexibles y detalles prácticos de cada jornada.'
+        icon='calendar'
         action={{ href: "/mapa", label: "Abrir mapa" }}
       />
       <ItineraryList />

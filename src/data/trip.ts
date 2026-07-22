@@ -199,7 +199,7 @@ export const trip: Trip = {
       stopIds: ["aeropuerto-santiago"],
       status: "por-decidir",
       activities: [{ text: "Tiempo libre o plan pendiente de concretar." }],
-      logistics: ["Vuelo de Santiago a Bilbao; hora todavía pendiente (XX:XX)."],
+      logistics: ["Vuelo de Santiago a Bilbao a las 9:40."],
     },
   ],
   places: [
