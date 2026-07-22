@@ -14,13 +14,9 @@ function addCalendarDays(date: string, days: number) {
 
 export default function HomePage() {
   const accommodations = trip.bases.map((accommodation) => {
-    const firstDate = trip.days.find(
-      (day) => day.baseId === accommodation.id,
-    )?.date;
+    const firstDate = trip.days.find((day) => day.baseId === accommodation.id)?.date;
     const dateLabel = firstDate
-      ? `${formatShortDate(firstDate)}–${formatShortDate(
-          addCalendarDays(firstDate, accommodation.nights),
-        )}`
+      ? `${formatShortDate(firstDate)}–${formatShortDate(addCalendarDays(firstDate, accommodation.nights))}`
       : undefined;
 
     return { accommodation, dateLabel };
@@ -52,9 +48,7 @@ export default function HomePage() {
             <span className='block text-[#f6c94c]'>2026</span>
           </h1>
           {trip.subtitle ? (
-            <p className='mt-5 max-w-sm text-base font-medium leading-6 text-white/72 sm:text-lg'>
-              {trip.subtitle}
-            </p>
+            <p className='mt-5 max-w-sm text-base font-medium leading-6 text-white/72 sm:text-lg'>{trip.subtitle}</p>
           ) : null}
         </div>
       </section>
@@ -66,15 +60,19 @@ export default function HomePage() {
           <div className='rounded-[1.6rem] border border-[#e5ddcf] bg-white p-4 shadow-[0_12px_28px_rgba(26,54,75,.055)] sm:flex sm:items-center sm:justify-between sm:gap-5 sm:p-5'>
             <div className='flex min-w-0 flex-1 items-start gap-3'>
               <span className='grid size-11 shrink-0 place-items-center rounded-xl bg-[#e4f1ec] text-[#147d76]'>
-                <Icon name='folder' className='size-5' />
+                <Image
+                  src='/images/icons/google-drive.webp'
+                  alt='Google Drive'
+                  width={20}
+                  height={20}
+                  className='size-5 object-contain'
+                />
               </span>
               <div className='min-w-0'>
                 <h2 id='documents-title' className='text-lg font-black text-[#0b3157]'>
                   Documentos del viaje
                 </h2>
-                <p className='mt-1 text-sm leading-5 text-[#60717c]'>
-                  Billetes de avión, alquiler coche, reservas...
-                </p>
+                <p className='mt-1 text-sm leading-5 text-[#60717c]'>Billetes de avión, alquiler coche, reservas...</p>
               </div>
             </div>
             <a
@@ -109,8 +107,14 @@ export default function HomePage() {
             </span>
             <span className='flex min-w-0 flex-col justify-center p-5 sm:p-6'>
               <span className='flex items-center gap-2 text-[.66rem] font-extrabold uppercase tracking-[.16em] text-[#8ce6aa]'>
-                <span className='grid size-7 place-items-center rounded-full bg-[#1ed760] text-[#102c25]'>
-                  <Icon name='music' className='size-4' strokeWidth={2.2} />
+                <span className='grid size-7 place-items-center rounded-full bg-[#1b1413] text-[#102c25]'>
+                  <Image
+                    src='/images/icons/spotify.webp'
+                    alt='Spotify'
+                    width={16}
+                    height={16}
+                    className='size-4 object-contain'
+                  />
                 </span>
                 Playlist del viaje
               </span>
@@ -154,7 +158,9 @@ export default function HomePage() {
                     {accommodation.town}
                   </span>
                   <strong className='mt-0.5 block truncate text-sm text-[#0b3157]'>{accommodation.name}</strong>
-                  {dateLabel ? <span className='mt-1 block text-xs font-semibold text-[#60717c]'>{dateLabel}</span> : null}
+                  {dateLabel ? (
+                    <span className='mt-1 block text-xs font-semibold text-[#60717c]'>{dateLabel}</span>
+                  ) : null}
                 </span>
                 <span className='shrink-0 rounded-xl bg-[#fff6d7] px-2.5 py-2 text-center text-[#8a6200]'>
                   <strong className='block text-lg leading-none'>{accommodation.nights}</strong>

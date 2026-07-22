@@ -28,8 +28,8 @@ export const trip: Trip = {
   playlist: {
     title: "Galicia 2026",
     subtitle: "Pulsa para abrir Spotify",
-    url: "https://open.spotify.com/",
-    image: "/images/spotify/album-cover.webp",
+    url: "https://open.spotify.com/playlist/2W4zsFFwSgY9Nd3wAZ1j4s?si=e0810502a09b4df3",
+    image: "/images/spotify/morrina.webp",
   },
   bases: [
     {
