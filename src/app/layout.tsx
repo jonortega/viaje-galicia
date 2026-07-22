@@ -5,23 +5,20 @@ import { BottomNavigation } from "@/components/BottomNavigation";
 
 const siteName = "Galicia 2026";
 const siteDescription =
-  "Nuestro itinerario por Galicia: planificación por días, mapa de lugares, alojamientos y documentos del viaje.";
-const shareImagePath = "/images/trip/share-preview.webp";
+  "Aplicación web del viaje a Galicia 20206 de Mentawai: Mapa, itinerario, documentos y playlist para el camino.";
+const shareImagePath = "/images/trip/mapa.webp";
 
 function getSiteUrl() {
   const vercelProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
   const configuredUrl =
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-    (vercelProductionUrl ? `https://${vercelProductionUrl}` : undefined);
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() || (vercelProductionUrl ? `https://${vercelProductionUrl}` : undefined);
 
   if (!configuredUrl) {
     if (process.env.NODE_ENV === "development") {
       return new URL("http://localhost:3000");
     }
 
-    throw new Error(
-      "Define NEXT_PUBLIC_SITE_URL con la URL pública HTTPS antes de crear la build de producción.",
-    );
+    throw new Error("Define NEXT_PUBLIC_SITE_URL con la URL pública HTTPS antes de crear la build de producción.");
   }
 
   const siteUrl = new URL(configuredUrl);
@@ -77,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang='es'>
       <body>
         {children}
         <BottomNavigation />
