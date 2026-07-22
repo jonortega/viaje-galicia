@@ -6,7 +6,7 @@ import { BottomNavigation } from "@/components/BottomNavigation";
 const siteName = "Galicia 2026";
 const siteDescription =
   "Aplicación web del viaje a Galicia 20206 de Mentawai: Mapa, itinerario, documentos y playlist para el camino.";
-const shareImagePath = "/images/trip/mapa.webp";
+const shareImagePath = "/images/trip/hero-captura.png";
 
 function getSiteUrl() {
   const vercelProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
