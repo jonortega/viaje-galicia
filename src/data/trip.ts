@@ -20,6 +20,35 @@ export const trip: Trip = {
   endDate: "2026-08-01",
   timeZone: "Europe/Madrid",
   travelers: 4,
+  travelGroup: {
+    name: "Mentawai",
+    members: [
+      {
+        id: "ibon",
+        name: "Ibon",
+        image: "/images/travelers/ibon.webp",
+        imageAlt: "Fotografía de Ibon",
+      },
+      {
+        id: "bilbao",
+        name: "Bilbao",
+        image: "/images/travelers/bilbao.webp",
+        imageAlt: "Fotografía de Bilbao",
+      },
+      {
+        id: "olea",
+        name: "Olea",
+        image: "/images/travelers/olea.webp",
+        imageAlt: "Fotografía de Olea",
+      },
+      {
+        id: "ortega",
+        name: "Ortega",
+        image: "/images/travelers/ortega.webp",
+        imageAlt: "Fotografía de Ortega",
+      },
+    ],
+  },
   hero: {
     image: "/images/trip/hero.webp",
     alt: "Fotografía de la costa gallega junto al océano Atlántico",

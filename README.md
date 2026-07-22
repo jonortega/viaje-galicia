@@ -38,6 +38,7 @@ Todo el contenido está en [src/data/trip.ts](src/data/trip.ts):
 - **bases**: alojamientos, noches y coordenadas.
 - **days**: títulos, paradas, notas y conducción de cada día.
 - **places**: lugares, categorías, coordenadas y enlaces a Google Maps.
+- **travelGroup**: nombre del grupo, viajeros y rutas de sus fotografías.
 - **playlist.url**: enlace de Spotify.
 - **playlist.image**: portada local de la playlist.
 
@@ -62,6 +63,19 @@ Cada lugar ya tiene su ruta esperada en el campo **image** de **src/data/trip.ts
 3. Si cambias el nombre o formato, actualiza solo el campo **image** del lugar.
 
 Mientras un archivo no exista o no pueda cargarse, el panel muestra un fondo neutro con el texto “Foto pendiente”.
+
+Las fotografías del grupo Mentawai se guardan en:
+
+**public/images/travelers/**
+
+Usa estos nombres para que aparezcan automáticamente sin editar componentes:
+
+- **ibon.webp**
+- **bilbao.webp**
+- **olea.webp**
+- **ortega.webp**
+
+Mientras una fotografía no exista, se muestran las iniciales de la persona. Los nombres, las rutas y la posición opcional del recorte (**imagePosition**) se editan en **travelGroup.members** dentro de **src/data/trip.ts**.
 
 ## Vista previa al compartir
 

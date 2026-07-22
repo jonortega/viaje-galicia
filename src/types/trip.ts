@@ -27,6 +27,19 @@ export interface TripHeroInfo {
   alt: string;
 }
 
+export interface Traveler {
+  id: string;
+  name: string;
+  image: string;
+  imageAlt: string;
+  imagePosition?: string;
+}
+
+export interface TravelGroup {
+  name: string;
+  members: Traveler[];
+}
+
 export interface AccommodationBase {
   id: string;
   name: string;
@@ -81,6 +94,7 @@ export interface Trip {
   endDate: string;
   timeZone: string;
   travelers: number;
+  travelGroup: TravelGroup;
   hero: TripHeroInfo;
   driveFolderUrl: string;
   playlist: PlaylistInfo;
